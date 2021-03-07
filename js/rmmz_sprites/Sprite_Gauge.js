@@ -338,7 +338,9 @@ Sprite_Gauge.prototype.setupLabelFont = function() {
 
 Sprite_Gauge.prototype.measureLabelWidth = function() {
     this.setupLabelFont();
-    return this.bitmap.measureTextWidth(this.label());
+    const labels = [TextManager.hpA, TextManager.mpA, TextManager.tpA];
+    const widths = labels.map(str => this.bitmap.measureTextWidth(str));
+    return Math.max(...widths);
 };
 
 Sprite_Gauge.prototype.labelOpacity = function() {

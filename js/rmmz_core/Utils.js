@@ -22,7 +22,7 @@ Utils.RPGMAKER_NAME = "MZ";
  * @type string
  * @constant
  */
-Utils.RPGMAKER_VERSION = "1.1.1";
+Utils.RPGMAKER_VERSION = "1.2.0";
 
 /**
  * Checks whether the current RPG Maker version is greater than or equal to

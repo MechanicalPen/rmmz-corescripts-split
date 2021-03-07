@@ -262,7 +262,6 @@ Sprite_Animation.prototype.onBeforeRender = function(renderer) {
 };
 
 Sprite_Animation.prototype.onAfterRender = function(renderer) {
-    renderer.texture.contextChange();
     renderer.texture.reset();
     renderer.geometry.reset();
     renderer.state.reset();

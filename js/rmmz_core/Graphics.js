@@ -582,6 +582,7 @@ Graphics._createEffekseerContext = function() {
             this._effekseer = effekseer.createContext();
             if (this._effekseer) {
                 this._effekseer.init(this._app.renderer.gl);
+                this._effekseer.setRestorationOfStatesFlag(false);
             }
         } catch (e) {
             this._app = null;
