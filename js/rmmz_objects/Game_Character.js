@@ -371,6 +371,7 @@ Game_Character.prototype.processRouteEnd = function() {
     } else if (this._moveRouteForcing) {
         this._moveRouteForcing = false;
         this.restoreMoveRoute();
+        this.setMovementSuccess(false);
     }
 };
 

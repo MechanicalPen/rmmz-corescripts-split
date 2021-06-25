@@ -86,6 +86,7 @@ Sprite_Actor.prototype.setBattler = function(battler) {
             this.setActorHome(battler.index());
         } else {
             this._mainSprite.bitmap = null;
+            this._battlerName = "";
         }
         this.startEntryMotion();
         this._stateSprite.setup(battler);

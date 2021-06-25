@@ -241,3 +241,11 @@ Game_System.prototype.mainFontSize = function() {
 Game_System.prototype.windowPadding = function() {
     return 12;
 };
+
+Game_System.prototype.windowOpacity = function() {
+    if ("windowOpacity" in $dataSystem.advanced) {
+        return $dataSystem.advanced.windowOpacity;
+    } else {
+        return 192;
+    }
+};

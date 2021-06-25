@@ -195,7 +195,7 @@ Window_Message.prototype.updateMessage = function() {
             }
         }
         this.flushTextState(textState);
-        if (this.isEndOfText(textState) && !this.pause) {
+        if (this.isEndOfText(textState) && !this.isWaiting()) {
             this.onEndOfText();
         }
         return true;
@@ -209,7 +209,7 @@ Window_Message.prototype.shouldBreakHere = function(textState) {
         if (!this._showFast && !this._lineShowFast) {
             return true;
         }
-        if (this.pause || this._waitCount > 0) {
+        if (this.isWaiting()) {
             return true;
         }
     }
@@ -388,4 +388,8 @@ Window_Message.prototype.startWait = function(count) {
 Window_Message.prototype.startPause = function() {
     this.startWait(10);
     this.pause = true;
+};
+
+Window_Message.prototype.isWaiting = function() {
+    return this.pause || this._waitCount > 0;
 };

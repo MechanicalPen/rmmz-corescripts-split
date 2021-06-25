@@ -37,6 +37,7 @@ Window_ChoiceList.prototype.start = function() {
     this.placeCancelButton();
     this.createContents();
     this.refresh();
+    this.scrollTo(0, 0);
     this.selectDefault();
     this.open();
     this.activate();

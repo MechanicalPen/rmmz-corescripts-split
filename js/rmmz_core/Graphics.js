@@ -266,6 +266,7 @@ Graphics.hideScreen = function() {
 Graphics.resize = function(width, height) {
     this._width = width;
     this._height = height;
+    this._app.renderer.resize(width, height);
     this._updateAllElements();
 };
 
