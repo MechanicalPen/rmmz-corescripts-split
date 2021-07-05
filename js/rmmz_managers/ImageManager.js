@@ -118,15 +118,15 @@ ImageManager.throwLoadError = function(bitmap) {
 };
 
 ImageManager.isObjectCharacter = function(filename) {
-    const sign = filename.match(/^[!$]+/);
+    const sign = Utils.extractFileName(filename).match(/^[!$]+/);
     return sign && sign[0].includes("!");
 };
 
 ImageManager.isBigCharacter = function(filename) {
-    const sign = filename.match(/^[!$]+/);
+    const sign = Utils.extractFileName(filename).match(/^[!$]+/);
     return sign && sign[0].includes("$");
 };
 
 ImageManager.isZeroParallax = function(filename) {
-    return filename.charAt(0) === "!";
+    return Utils.extractFileName(filename).charAt(0) === "!";
 };

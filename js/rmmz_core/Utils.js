@@ -22,7 +22,7 @@ Utils.RPGMAKER_NAME = "MZ";
  * @type string
  * @constant
  */
-Utils.RPGMAKER_VERSION = "1.3.0";
+Utils.RPGMAKER_VERSION = "1.3.2";
 
 /**
  * Checks whether the current RPG Maker version is greater than or equal to
@@ -199,6 +199,16 @@ Utils.canPlayWebm = function() {
  */
 Utils.encodeURI = function(str) {
     return encodeURIComponent(str).replace(/%2F/g, "/");
+};
+
+/**
+ * Gets the filename that does not include subfolders.
+ *
+ * @param {string} filename - The filename with subfolders.
+ * @returns {string} The filename without subfolders.
+ */
+Utils.extractFileName = function(filename) {
+    return filename.split("/").pop();
 };
 
 /**
