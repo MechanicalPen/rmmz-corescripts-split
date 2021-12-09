@@ -484,10 +484,11 @@ Game_Interpreter.prototype.command111 = function(params) {
             break;
         case 3: // Timer
             if ($gameTimer.isWorking()) {
+                const sec = $gameTimer.frames() / 60;
                 if (params[2] === 0) {
-                    result = $gameTimer.seconds() >= params[1];
+                    result = sec >= params[1];
                 } else {
-                    result = $gameTimer.seconds() <= params[1];
+                    result = sec <= params[1];
                 }
             }
             break;

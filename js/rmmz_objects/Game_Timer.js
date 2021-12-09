@@ -38,6 +38,10 @@ Game_Timer.prototype.seconds = function() {
     return Math.floor(this._frames / 60);
 };
 
+Game_Timer.prototype.frames = function() {
+    return this._frames;
+};
+
 Game_Timer.prototype.onExpire = function() {
     BattleManager.abort();
 };

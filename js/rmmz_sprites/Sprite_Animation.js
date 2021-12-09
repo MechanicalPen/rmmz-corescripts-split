@@ -30,7 +30,6 @@ Sprite_Animation.prototype.initMembers = function() {
     this._flashColor = [0, 0, 0, 0];
     this._flashDuration = 0;
     this._viewportSize = 4096;
-    this._originalViewport = null;
     this.z = 8;
 };
 
@@ -98,9 +97,9 @@ Sprite_Animation.prototype.canStart = function() {
 };
 
 Sprite_Animation.prototype.shouldWaitForPrevious = function() {
-    // [Note] Effekseer is very heavy on some mobile devices, so we don't
-    //   display many effects at the same time.
-    return Utils.isMobileDevice();
+    // [Note] Older versions of Effekseer were very heavy on some mobile
+    //   devices. We don't need this anymore.
+    return false;
 };
 
 Sprite_Animation.prototype.updateEffectGeometry = function() {
@@ -174,7 +173,6 @@ Sprite_Animation.prototype.setRotation = function(x, y, z) {
 Sprite_Animation.prototype._render = function(renderer) {
     if (this._targets.length > 0 && this._handle && this._handle.exists) {
         this.onBeforeRender(renderer);
-        this.saveViewport(renderer);
         this.setProjectionMatrix(renderer);
         this.setCameraMatrix(renderer);
         this.setViewport(renderer);
@@ -244,16 +242,8 @@ Sprite_Animation.prototype.targetSpritePosition = function(sprite) {
     return sprite.worldTransform.apply(point);
 };
 
-Sprite_Animation.prototype.saveViewport = function(renderer) {
-    // [Note] Retrieving the viewport is somewhat heavy.
-    if (!this._originalViewport) {
-        this._originalViewport = renderer.gl.getParameter(renderer.gl.VIEWPORT);
-    }
-};
-
 Sprite_Animation.prototype.resetViewport = function(renderer) {
-    const vp = this._originalViewport;
-    renderer.gl.viewport(vp[0], vp[1], vp[2], vp[3]);
+    renderer.gl.viewport(0, 0, renderer.view.width, renderer.view.height);
 };
 
 Sprite_Animation.prototype.onBeforeRender = function(renderer) {

@@ -56,9 +56,15 @@ Game_Party.prototype.allMembers = function() {
 };
 
 Game_Party.prototype.battleMembers = function() {
-    return this.allMembers()
-        .slice(0, this.maxBattleMembers())
-        .filter(actor => actor.isAppeared());
+    return this.allBattleMembers().filter(actor => actor.isAppeared());
+};
+
+Game_Party.prototype.hiddenBattleMembers = function() {
+    return this.allBattleMembers().filter(actor => actor.isHidden());
+};
+
+Game_Party.prototype.allBattleMembers = function() {
+    return this.allMembers().slice(0, this.maxBattleMembers());
 };
 
 Game_Party.prototype.maxBattleMembers = function() {
@@ -298,6 +304,10 @@ Game_Party.prototype.isAllDead = function() {
     } else {
         return false;
     }
+};
+
+Game_Party.prototype.isEscaped = function(item) {
+    return this.isAllDead() && this.hiddenBattleMembers().length > 0;
 };
 
 Game_Party.prototype.onPlayerWalk = function() {

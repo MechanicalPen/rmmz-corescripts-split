@@ -43,6 +43,10 @@ Sprite_Gauge.prototype.bitmapWidth = function() {
 };
 
 Sprite_Gauge.prototype.bitmapHeight = function() {
+    return 32;
+};
+
+Sprite_Gauge.prototype.textHeight = function() {
     return 24;
 };
 
@@ -289,7 +293,7 @@ Sprite_Gauge.prototype.redraw = function() {
 
 Sprite_Gauge.prototype.drawGauge = function() {
     const gaugeX = this.gaugeX();
-    const gaugeY = this.bitmapHeight() - this.gaugeHeight();
+    const gaugeY = this.textHeight() - this.gaugeHeight();
     const gaugewidth = this.bitmapWidth() - gaugeX;
     const gaugeHeight = this.gaugeHeight();
     this.drawGaugeRect(gaugeX, gaugeY, gaugewidth, gaugeHeight);
@@ -321,7 +325,7 @@ Sprite_Gauge.prototype.drawLabel = function() {
     const x = this.labelOutlineWidth() / 2;
     const y = this.labelY();
     const width = this.bitmapWidth();
-    const height = this.bitmapHeight();
+    const height = this.textHeight();
     this.setupLabelFont();
     this.bitmap.paintOpacity = this.labelOpacity();
     this.bitmap.drawText(label, x, y, width, height, "left");
@@ -340,7 +344,7 @@ Sprite_Gauge.prototype.measureLabelWidth = function() {
     this.setupLabelFont();
     const labels = [TextManager.hpA, TextManager.mpA, TextManager.tpA];
     const widths = labels.map(str => this.bitmap.measureTextWidth(str));
-    return Math.max(...widths);
+    return Math.ceil(Math.max(...widths));
 };
 
 Sprite_Gauge.prototype.labelOpacity = function() {
@@ -350,7 +354,7 @@ Sprite_Gauge.prototype.labelOpacity = function() {
 Sprite_Gauge.prototype.drawValue = function() {
     const currentValue = this.currentValue();
     const width = this.bitmapWidth();
-    const height = this.bitmapHeight();
+    const height = this.textHeight();
     this.setupValueFont();
     this.bitmap.drawText(currentValue, 0, 0, width, height, "right");
 };

@@ -86,6 +86,10 @@ Game_Temp.prototype.retrieveCommonEvent = function() {
     return $dataCommonEvents[this._commonEventQueue.shift()];
 };
 
+Game_Temp.prototype.clearCommonEventReservation = function() {
+    this._commonEventQueue.length = 0;
+};
+
 Game_Temp.prototype.isCommonEventReserved = function() {
     return this._commonEventQueue.length > 0;
 };

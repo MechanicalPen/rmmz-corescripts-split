@@ -219,7 +219,7 @@ SceneManager.updateInputData = function() {
 };
 
 SceneManager.updateEffekseer = function() {
-    if (Graphics.effekseer) {
+    if (Graphics.effekseer && this.isGameActive()) {
         Graphics.effekseer.update();
     }
 };

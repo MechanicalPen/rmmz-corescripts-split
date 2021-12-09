@@ -528,7 +528,7 @@ Bitmap.prototype.measureTextWidth = function(text) {
     context.font = this._makeFontNameText();
     const width = context.measureText(text).width;
     context.restore();
-    return Math.ceil(width);
+    return width;
 };
 
 /**
