@@ -50,6 +50,7 @@ Scene_Item.prototype.createItemWindow = function() {
     if (!this._categoryWindow.needsSelection()) {
         this._itemWindow.y -= this._categoryWindow.height;
         this._itemWindow.height += this._categoryWindow.height;
+        this._itemWindow.createContents();
         this._categoryWindow.update();
         this._categoryWindow.hide();
         this._categoryWindow.deactivate();

@@ -467,7 +467,7 @@ BattleManager.updateTurnEnd = function() {
         this.startTurn();
     } else {
         this.endAllBattlersTurn();
-        this.startInput();
+        this._phase = "start";
     }
 };
 
