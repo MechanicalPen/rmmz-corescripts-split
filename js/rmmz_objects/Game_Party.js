@@ -306,7 +306,7 @@ Game_Party.prototype.isAllDead = function() {
     }
 };
 
-Game_Party.prototype.isEscaped = function(item) {
+Game_Party.prototype.isEscaped = function() {
     return this.isAllDead() && this.hiddenBattleMembers().length > 0;
 };
 
