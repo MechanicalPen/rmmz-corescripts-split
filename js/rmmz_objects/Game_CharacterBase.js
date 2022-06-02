@@ -395,7 +395,7 @@ Game_CharacterBase.prototype.refreshBushDepth = function() {
         !this.isJumping()
     ) {
         if (!this.isMoving()) {
-            this._bushDepth = 12;
+            this._bushDepth = $gameMap.bushDepth();
         }
     } else {
         this._bushDepth = 0;

@@ -55,11 +55,19 @@ Game_Map.prototype.isEventRunning = function() {
 };
 
 Game_Map.prototype.tileWidth = function() {
-    return 48;
+    if ("tileSize" in $dataSystem) {
+        return $dataSystem.tileSize;
+    } else {
+        return 48;
+    }
 };
 
 Game_Map.prototype.tileHeight = function() {
-    return 48;
+    return this.tileWidth();
+};
+
+Game_Map.prototype.bushDepth = function() {
+    return this.tileHeight() / 4;
 };
 
 Game_Map.prototype.mapId = function() {

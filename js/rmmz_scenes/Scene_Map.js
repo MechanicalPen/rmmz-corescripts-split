@@ -26,7 +26,7 @@ Scene_Map.prototype.create = function() {
     if (this._transfer) {
         DataManager.loadMapData($gamePlayer.newMapId());
         this.onTransfer();
-    } else if (!$dataMap || $dataMap.id !== $gameMap.mapId()) {
+    } else {
         DataManager.loadMapData($gameMap.mapId());
     }
 };

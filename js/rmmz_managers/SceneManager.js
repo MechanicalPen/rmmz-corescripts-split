@@ -113,7 +113,9 @@ SceneManager.determineRepeatNumber = function(deltaTime) {
 };
 
 SceneManager.terminate = function() {
-    window.close();
+    if (Utils.isNwjs()) {
+        nw.App.quit();
+    }
 };
 
 SceneManager.onError = function(event) {

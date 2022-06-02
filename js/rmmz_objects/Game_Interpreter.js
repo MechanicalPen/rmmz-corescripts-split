@@ -439,6 +439,12 @@ Game_Interpreter.prototype.command108 = function(params) {
     return true;
 };
 
+// Skip
+Game_Interpreter.prototype.command109 = function() {
+    this.skipBranch();
+    return true;
+};
+
 // Conditional Branch
 Game_Interpreter.prototype.command111 = function(params) {
     let result = false;

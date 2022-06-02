@@ -101,12 +101,10 @@ Sprite_Character.prototype.setCharacterBitmap = function() {
 };
 
 Sprite_Character.prototype.updateFrame = function() {
-    if (this.bitmap.isReady()) {
-        if (this._tileId > 0) {
-            this.updateTileFrame();
-        } else {
-            this.updateCharacterFrame();
-        }
+    if (this._tileId > 0) {
+        this.updateTileFrame();
+    } else {
+        this.updateCharacterFrame();
     }
 };
 

@@ -18,7 +18,7 @@ Sprite_Enemy.prototype.initMembers = function() {
     Sprite_Battler.prototype.initMembers.call(this);
     this._enemy = null;
     this._appeared = false;
-    this._battlerName = "";
+    this._battlerName = null;
     this._battlerHue = 0;
     this._effectType = null;
     this._effectDuration = 0;

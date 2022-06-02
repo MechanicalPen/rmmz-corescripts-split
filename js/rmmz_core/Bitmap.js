@@ -626,6 +626,10 @@ Bitmap.prototype._startLoading = function() {
         this._startDecrypting();
     } else {
         this._image.src = this._url;
+        if (this._image.width > 0) {
+            this._image.onload = null;
+            this._onLoad();
+        }
     }
 };
 

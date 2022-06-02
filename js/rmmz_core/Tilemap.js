@@ -18,12 +18,24 @@ Tilemap.prototype.initialize = function() {
     this._width = Graphics.width;
     this._height = Graphics.height;
     this._margin = 20;
-    this._tileWidth = 48;
-    this._tileHeight = 48;
     this._mapWidth = 0;
     this._mapHeight = 0;
     this._mapData = null;
     this._bitmaps = [];
+
+    /**
+     * The width of each tile.
+     *
+     * @type number
+     */
+    this.tileWidth = 48;
+
+    /**
+     * The height of each tile.
+     *
+     * @type number
+     */
+    this.tileHeight = 48;
 
     /**
      * The origin point of the tilemap for scrolling.
@@ -178,12 +190,12 @@ Tilemap.prototype.refresh = function() {
 Tilemap.prototype.updateTransform = function() {
     const ox = Math.ceil(this.origin.x);
     const oy = Math.ceil(this.origin.y);
-    const startX = Math.floor((ox - this._margin) / this._tileWidth);
-    const startY = Math.floor((oy - this._margin) / this._tileHeight);
-    this._lowerLayer.x = startX * this._tileWidth - ox;
-    this._lowerLayer.y = startY * this._tileHeight - oy;
-    this._upperLayer.x = startX * this._tileWidth - ox;
-    this._upperLayer.y = startY * this._tileHeight - oy;
+    const startX = Math.floor((ox - this._margin) / this.tileWidth);
+    const startY = Math.floor((oy - this._margin) / this.tileHeight);
+    this._lowerLayer.x = startX * this.tileWidth - ox;
+    this._lowerLayer.y = startY * this.tileHeight - oy;
+    this._upperLayer.x = startX * this.tileWidth - ox;
+    this._upperLayer.y = startY * this.tileHeight - oy;
     if (
         this._needsRepaint ||
         this._lastAnimationFrame !== this.animationFrame ||
@@ -235,8 +247,8 @@ Tilemap.prototype._addAllSpots = function(startX, startY) {
     this._upperLayer.clear();
     const widthWithMatgin = this.width + this._margin * 2;
     const heightWithMatgin = this.height + this._margin * 2;
-    const tileCols = Math.ceil(widthWithMatgin / this._tileWidth) + 1;
-    const tileRows = Math.ceil(heightWithMatgin / this._tileHeight) + 1;
+    const tileCols = Math.ceil(widthWithMatgin / this.tileWidth) + 1;
+    const tileRows = Math.ceil(heightWithMatgin / this.tileHeight) + 1;
     for (let y = 0; y < tileRows; y++) {
         for (let x = 0; x < tileCols; x++) {
             this._addSpot(startX, startY, x, y);
@@ -247,8 +259,8 @@ Tilemap.prototype._addAllSpots = function(startX, startY) {
 Tilemap.prototype._addSpot = function(startX, startY, x, y) {
     const mx = startX + x;
     const my = startY + y;
-    const dx = x * this._tileWidth;
-    const dy = y * this._tileHeight;
+    const dx = x * this.tileWidth;
+    const dy = y * this.tileHeight;
     const tileId0 = this._readMapData(mx, my, 0);
     const tileId1 = this._readMapData(mx, my, 1);
     const tileId2 = this._readMapData(mx, my, 2);
@@ -300,8 +312,8 @@ Tilemap.prototype._addNormalTile = function(layer, tileId, dx, dy) {
         setNumber = 5 + Math.floor(tileId / 256);
     }
 
-    const w = this._tileWidth;
-    const h = this._tileHeight;
+    const w = this.tileWidth;
+    const h = this.tileHeight;
     const sx = ((Math.floor(tileId / 128) % 2) * 8 + (tileId % 8)) * w;
     const sy = (Math.floor((tileId % 256) / 8) % 16) * h;
 
@@ -365,8 +377,8 @@ Tilemap.prototype._addAutotile = function(layer, tileId, dx, dy) {
     }
 
     const table = autotileTable[shape];
-    const w1 = this._tileWidth / 2;
-    const h1 = this._tileHeight / 2;
+    const w1 = this.tileWidth / 2;
+    const h1 = this.tileHeight / 2;
     for (let i = 0; i < 4; i++) {
         const qsx = table[i][0];
         const qsy = table[i][1];
@@ -398,8 +410,8 @@ Tilemap.prototype._addTableEdge = function(layer, tileId, dx, dy) {
         const bx = tx * 2;
         const by = (ty - 2) * 3;
         const table = autotileTable[shape];
-        const w1 = this._tileWidth / 2;
-        const h1 = this._tileHeight / 2;
+        const w1 = this.tileWidth / 2;
+        const h1 = this.tileHeight / 2;
         for (let i = 0; i < 2; i++) {
             const qsx = table[2 + i][0];
             const qsy = table[2 + i][1];
@@ -414,8 +426,8 @@ Tilemap.prototype._addTableEdge = function(layer, tileId, dx, dy) {
 
 Tilemap.prototype._addShadow = function(layer, shadowBits, dx, dy) {
     if (shadowBits & 0x0f) {
-        const w1 = this._tileWidth / 2;
-        const h1 = this._tileHeight / 2;
+        const w1 = this.tileWidth / 2;
+        const h1 = this.tileHeight / 2;
         for (let i = 0; i < 4; i++) {
             if (shadowBits & (1 << i)) {
                 const dx1 = dx + (i % 2) * w1;
