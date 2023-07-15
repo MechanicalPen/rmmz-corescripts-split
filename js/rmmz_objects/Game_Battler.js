@@ -519,7 +519,9 @@ Game_Battler.prototype.forceAction = function(skillId, targetIndex) {
     } else {
         action.setTarget(targetIndex);
     }
-    this._actions.push(action);
+    if (action.item()) {
+        this._actions.push(action);
+    }
 };
 
 Game_Battler.prototype.useItem = function(item) {

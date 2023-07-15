@@ -243,9 +243,5 @@ Game_System.prototype.windowPadding = function() {
 };
 
 Game_System.prototype.windowOpacity = function() {
-    if ("windowOpacity" in $dataSystem.advanced) {
-        return $dataSystem.advanced.windowOpacity;
-    } else {
-        return 192;
-    }
+    return $dataSystem.advanced.windowOpacity;
 };

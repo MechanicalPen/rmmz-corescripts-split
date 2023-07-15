@@ -17,7 +17,11 @@ Window_ScrollText.prototype.initialize = function(rect) {
     this.hide();
     this._reservedRect = rect;
     this._text = "";
+    this._maxBitmapHeight = 2048;
     this._allTextHeight = 0;
+    this._blockHeight = 0;
+    this._blockIndex = 0;
+    this._scrollY = 0;
 };
 
 Window_ScrollText.prototype.update = function() {
@@ -36,6 +40,11 @@ Window_ScrollText.prototype.startMessage = function() {
     this._text = $gameMessage.allText();
     if (this._text) {
         this.updatePlacement();
+        this._allTextHeight = this.textSizeEx(this._text).height;
+        this._blockHeight = this._maxBitmapHeight - this.height;
+        this._blockIndex = 0;
+        this.origin.y = this._scrollY = -this.height;
+        this.createContents();
         this.refresh();
         this.show();
     } else {
@@ -44,11 +53,10 @@ Window_ScrollText.prototype.startMessage = function() {
 };
 
 Window_ScrollText.prototype.refresh = function() {
-    this._allTextHeight = this.textSizeEx(this._text).height;
-    this.createContents();
-    this.origin.y = -this.height;
     const rect = this.baseTextRect();
-    this.drawTextEx(this._text, rect.x, rect.y, rect.width);
+    const y = rect.y - this._scrollY + (this._scrollY % this._blockHeight);
+    this.contents.clear();
+    this.drawTextEx(this._text, rect.x, y, rect.width);
 };
 
 Window_ScrollText.prototype.updatePlacement = function() {
@@ -57,13 +65,24 @@ Window_ScrollText.prototype.updatePlacement = function() {
 };
 
 Window_ScrollText.prototype.contentsHeight = function() {
-    return Math.max(this._allTextHeight, 1);
+    if (this._allTextHeight > 0) {
+        return Math.min(this._allTextHeight, this._maxBitmapHeight);
+    } else {
+        return 0;
+    }
 };
 
 Window_ScrollText.prototype.updateMessage = function() {
-    this.origin.y += this.scrollSpeed();
-    if (this.origin.y >= this.contents.height) {
+    this._scrollY += this.scrollSpeed();
+    if (this._scrollY >= this._allTextHeight) {
         this.terminateMessage();
+    } else {
+        const blockIndex = Math.floor(this._scrollY / this._blockHeight);
+        if (blockIndex > this._blockIndex) {
+            this._blockIndex = blockIndex;
+            this.refresh();
+        }
+        this.origin.y = this._scrollY % this._blockHeight;
     }
 };
 

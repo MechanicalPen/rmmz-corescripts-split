@@ -214,6 +214,10 @@ DataManager.isEventTest = function() {
     return Utils.isOptionValid("etest");
 };
 
+DataManager.isTitleSkip = function() {
+    return Utils.isOptionValid("tskip");
+};
+
 DataManager.isSkill = function(item) {
     return item && $dataSkills.includes(item);
 };
