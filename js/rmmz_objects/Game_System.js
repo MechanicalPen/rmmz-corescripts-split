@@ -57,6 +57,10 @@ Game_System.prototype.isAutosaveEnabled = function() {
     return $dataSystem.optAutosave;
 };
 
+Game_System.prototype.isMessageSkipEnabled = function() {
+    return $dataSystem.optMessageSkip;
+};
+
 Game_System.prototype.isSaveEnabled = function() {
     return this._saveEnabled;
 };

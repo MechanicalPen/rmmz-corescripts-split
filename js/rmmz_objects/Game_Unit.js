@@ -114,9 +114,9 @@ Game_Unit.prototype.isAllDead = function() {
     return this.aliveMembers().length === 0;
 };
 
-Game_Unit.prototype.substituteBattler = function() {
+Game_Unit.prototype.substituteBattler = function(target) {
     for (const member of this.members()) {
-        if (member.isSubstitute()) {
+        if (member.isSubstitute() && member !== target) {
             return member;
         }
     }

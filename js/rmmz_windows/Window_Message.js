@@ -143,7 +143,9 @@ Window_Message.prototype.updateWait = function() {
 };
 
 Window_Message.prototype.cancelWait = function() {
-    this._waitCount = 0;
+    if ($gameSystem.isMessageSkipEnabled()) {
+        this._waitCount = 0;
+    }
 };
 
 Window_Message.prototype.updateLoading = function() {
