@@ -17,6 +17,7 @@ Window_EventItem.prototype.initialize = function(rect) {
     this.deactivate();
     this.setHandler("ok", this.onOk.bind(this));
     this.setHandler("cancel", this.onCancel.bind(this));
+    this._canRepeat = false;
 };
 
 Window_EventItem.prototype.setMessageWindow = function(messageWindow) {

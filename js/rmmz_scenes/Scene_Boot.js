@@ -92,8 +92,8 @@ Scene_Boot.prototype.start = function() {
 Scene_Boot.prototype.startNormalGame = function() {
     this.checkPlayerLocation();
     DataManager.setupNewGame();
-    SceneManager.goto(Scene_Title);
     Window_TitleCommand.initCommandPosition();
+    SceneManager.goto(Scene_Splash);
 };
 
 Scene_Boot.prototype.resizeScreen = function() {

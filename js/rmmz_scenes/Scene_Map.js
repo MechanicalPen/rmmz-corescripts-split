@@ -91,6 +91,7 @@ Scene_Map.prototype.update = function() {
 
 Scene_Map.prototype.updateMainMultiply = function() {
     if (this.isFastForward()) {
+        this.cancelMessageWait();
         this.updateMain();
     }
     this.updateMain();

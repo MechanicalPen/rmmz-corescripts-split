@@ -113,3 +113,7 @@ Scene_Message.prototype.associateWindows = function() {
     this._numberInputWindow.setMessageWindow(messageWindow);
     this._eventItemWindow.setMessageWindow(messageWindow);
 };
+
+Scene_Message.prototype.cancelMessageWait = function() {
+    this._messageWindow.cancelWait();
+};
