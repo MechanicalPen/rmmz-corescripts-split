@@ -7,14 +7,58 @@ function ImageManager() {
     throw new Error("This is a static class");
 }
 
-ImageManager.iconWidth = 32;
-ImageManager.iconHeight = 32;
-ImageManager.faceWidth = 144;
-ImageManager.faceHeight = 144;
+ImageManager.standardIconWidth = 32;
+ImageManager.standardIconHeight = 32;
+ImageManager.standardFaceWidth = 144;
+ImageManager.standardFaceHeight = 144;
 
 ImageManager._cache = {};
 ImageManager._system = {};
 ImageManager._emptyBitmap = new Bitmap(1, 1);
+
+Object.defineProperty(ImageManager, "iconWidth", {
+    get: function() {
+        return this.getIconSize();
+    },
+    configurable: true
+});
+
+Object.defineProperty(ImageManager, "iconHeight", {
+    get: function() {
+        return this.getIconSize();
+    },
+    configurable: true
+});
+
+Object.defineProperty(ImageManager, "faceWidth", {
+    get: function() {
+        return this.getFaceSize();
+    },
+    configurable: true
+});
+
+Object.defineProperty(ImageManager, "faceHeight", {
+    get: function() {
+        return this.getFaceSize();
+    },
+    configurable: true
+});
+
+ImageManager.getIconSize = function() {
+    if ("iconSize" in $dataSystem) {
+        return $dataSystem.iconSize;
+    } else {
+        return this.defaultIconWidth;
+    }
+};
+
+ImageManager.getFaceSize = function() {
+    if ("faceSize" in $dataSystem) {
+        return $dataSystem.faceSize;
+    } else {
+        return this.defaultFaceWidth;
+    }
+};
 
 ImageManager.loadAnimation = function(filename) {
     return this.loadBitmap("img/animations/", filename);

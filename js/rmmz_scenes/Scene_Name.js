@@ -42,7 +42,7 @@ Scene_Name.prototype.editWindowRect = function() {
     const inputWindowHeight = this.calcWindowHeight(9, true);
     const padding = $gameSystem.windowPadding();
     const ww = 600;
-    const wh = ImageManager.faceHeight + padding * 2;
+    const wh = ImageManager.standardFaceHeight + padding * 2;
     const wx = (Graphics.boxWidth - ww) / 2;
     const wy = (Graphics.boxHeight - (wh + inputWindowHeight + 8)) / 2;
     return new Rectangle(wx, wy, ww, wh);

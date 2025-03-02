@@ -391,10 +391,14 @@ Window_Base.prototype.processColorChange = function(colorIndex) {
 };
 
 Window_Base.prototype.processDrawIcon = function(iconIndex, textState) {
+    const deltaX = ImageManager.standardIconWidth - ImageManager.iconWidth;
+    const deltaY = ImageManager.standardIconHeight - ImageManager.iconHeight;
     if (textState.drawing) {
-        this.drawIcon(iconIndex, textState.x + 2, textState.y + 2);
+        const x = textState.x + deltaX / 2 + 2;
+        const y = textState.y + deltaY / 2 + 2;
+        this.drawIcon(iconIndex, x, y);
     }
-    textState.x += ImageManager.iconWidth + 4;
+    textState.x += ImageManager.standardIconWidth + 4;
 };
 
 Window_Base.prototype.makeFontBigger = function() {
@@ -454,8 +458,8 @@ Window_Base.prototype.drawIcon = function(iconIndex, x, y) {
 Window_Base.prototype.drawFace = function(
     faceName, faceIndex, x, y, width, height
 ) {
-    width = width || ImageManager.faceWidth;
-    height = height || ImageManager.faceHeight;
+    width = width || ImageManager.standardFaceWidth;
+    height = height || ImageManager.standardFaceHeight;
     const bitmap = ImageManager.loadFace(faceName);
     const pw = ImageManager.faceWidth;
     const ph = ImageManager.faceHeight;
@@ -485,10 +489,11 @@ Window_Base.prototype.drawCharacter = function(
 Window_Base.prototype.drawItemName = function(item, x, y, width) {
     if (item) {
         const iconY = y + (this.lineHeight() - ImageManager.iconHeight) / 2;
-        const textMargin = ImageManager.iconWidth + 4;
+        const delta = ImageManager.standardIconWidth - ImageManager.iconWidth;
+        const textMargin = ImageManager.standardIconWidth + 4;
         const itemWidth = Math.max(0, width - textMargin);
         this.resetTextColor();
-        this.drawIcon(item.iconIndex, x, iconY);
+        this.drawIcon(item.iconIndex, x + delta / 2, iconY);
         this.drawText(item.name, x + textMargin, y, itemWidth);
     }
 };

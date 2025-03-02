@@ -125,9 +125,10 @@ Window_StatusBase.prototype.drawActorLevel = function(actor, x, y) {
 
 Window_StatusBase.prototype.drawActorIcons = function(actor, x, y, width) {
     width = width || 144;
-    const iconWidth = ImageManager.iconWidth;
+    const delta = ImageManager.standardIconWidth - ImageManager.iconWidth;
+    const iconWidth = ImageManager.standardIconWidth;
     const icons = actor.allIcons().slice(0, Math.floor(width / iconWidth));
-    let iconX = x;
+    let iconX = x + delta / 2;
     for (const icon of icons) {
         this.drawIcon(icon, iconX, y + 2);
         iconX += iconWidth;

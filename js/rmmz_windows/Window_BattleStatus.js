@@ -116,11 +116,11 @@ Window_BattleStatus.prototype.nameY = function(rect) {
 };
 
 Window_BattleStatus.prototype.stateIconX = function(rect) {
-    return rect.x + rect.width - ImageManager.iconWidth / 2 + 4;
+    return rect.x + rect.width - ImageManager.standardIconWidth / 2 + 4;
 };
 
 Window_BattleStatus.prototype.stateIconY = function(rect) {
-    return rect.y + ImageManager.iconHeight / 2 + 4;
+    return rect.y + ImageManager.standardIconHeight / 2 + 4;
 };
 
 Window_BattleStatus.prototype.basicGaugesX = function(rect) {

@@ -107,7 +107,7 @@ Window_Message.prototype.startMessage = function() {
 
 Window_Message.prototype.newLineX = function(textState) {
     const faceExists = $gameMessage.faceName() !== "";
-    const faceWidth = ImageManager.faceWidth;
+    const faceWidth = ImageManager.standardFaceWidth;
     const spacing = 20;
     const margin = faceExists ? faceWidth + spacing : 4;
     return textState.rtl ? this.innerWidth - margin : margin;
@@ -314,7 +314,7 @@ Window_Message.prototype.drawMessageFace = function() {
     const faceName = $gameMessage.faceName();
     const faceIndex = $gameMessage.faceIndex();
     const rtl = $gameMessage.isRTL();
-    const width = ImageManager.faceWidth;
+    const width = ImageManager.standardFaceWidth;
     const height = this.innerHeight;
     const x = rtl ? this.innerWidth - width - 4 : 4;
     this.drawFace(faceName, faceIndex, x, 0, width, height);

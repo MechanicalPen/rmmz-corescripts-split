@@ -109,6 +109,6 @@ Window_EquipStatus.prototype.paramX = function() {
 };
 
 Window_EquipStatus.prototype.paramY = function(index) {
-    const faceHeight = ImageManager.faceHeight;
+    const faceHeight = ImageManager.standardFaceHeight;
     return faceHeight + Math.floor(this.lineHeight() * (index + 1.5));
 };

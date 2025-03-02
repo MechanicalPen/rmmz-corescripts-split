@@ -52,7 +52,7 @@ Window_MenuStatus.prototype.drawPendingItemBackground = function(index) {
 Window_MenuStatus.prototype.drawItemImage = function(index) {
     const actor = this.actor(index);
     const rect = this.itemRect(index);
-    const width = ImageManager.faceWidth;
+    const width = ImageManager.standardFaceWidth;
     const height = rect.height - 2;
     this.changePaintOpacity(actor.isBattleMember());
     this.drawActorFace(actor, rect.x + 1, rect.y + 1, width, height);
